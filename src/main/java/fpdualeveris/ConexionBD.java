@@ -1,4 +1,4 @@
-package bbdd;
+package fpdualeveris;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class ConexionBD {
 	private static Connection con = null;
 
-	public static Connection getConnection() {
+	private static Connection getConnection() {
 
 		try {
 			if (con == null) {

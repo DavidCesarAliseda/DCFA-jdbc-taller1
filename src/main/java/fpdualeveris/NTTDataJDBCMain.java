@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-import bbdd.ConexionBD;
 import models.SoccerPlayer;
 
 /**
@@ -18,7 +17,7 @@ import models.SoccerPlayer;
  * @version 11/11/21/A
  */
 
-public class FPDual {
+public class NTTDataJDBCMain {
 	public static void main(String[] args) {
 
 		try {
