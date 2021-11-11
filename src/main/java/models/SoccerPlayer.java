@@ -77,7 +77,7 @@ public class SoccerPlayer {
 	//toString
 	@Override
 	public String toString() {
-		return "SoccerPlayer: " + name + "," + firstRol+".";
+		return "SoccerPlayer: " + name + ", " + firstRol+".";
 	}
 	
 	

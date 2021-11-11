@@ -1,6 +1,7 @@
 package fpdualeveris;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,10 +19,11 @@ import models.SoccerPlayer;
  */
 
 public class NTTDataJDBCMain {
+	
 	public static void main(String[] args) {
-
+		
 		try {
-			Connection con = ConexionBD.getConnection();
+			Connection con = getConnection();
 			Scanner sc = new Scanner(System.in);
 			
 			//List para almacenar jugadores
@@ -29,7 +31,7 @@ public class NTTDataJDBCMain {
 			
 			//Consulta para extraer nombre y primera posicion de los jugadore cuya id sea mayor igual a 3 y menor que 6.
 			String sql = "select name, first_rol from nttdata_mysql_soccer_player where id_soccer_player >= ? and id_soccer_player <= ?";
-			PreparedStatement statement = ConexionBD.getConnection().prepareStatement(sql);
+			PreparedStatement statement = getConnection().prepareStatement(sql);
 			int firstPlayer = 3;
 			int lastPlayer = 6;
 			statement.setInt(1, firstPlayer);
@@ -61,4 +63,32 @@ public class NTTDataJDBCMain {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Este metodo conecta con la base de datos nttdata_javajdbc.
+	 */
+	
+	private static Connection con = null;
+
+	private static Connection getConnection() {
+
+		try {
+			if (con == null) {
+				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3336/nttdata_javajdbc?user=root&password=root"
+						+ "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+				System.out.println("Connection Successful");
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return (con);
+	}
+
+	public static void close(){
+        try {
+            if (con != null) con.close();
+        } catch (SQLException e){
+            System.err.println(e.getMessage());
+        }
+    }
 }
