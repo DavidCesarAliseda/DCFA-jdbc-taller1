@@ -72,7 +72,7 @@ public class SoccerPlayer {
 		this.idTeam = idTeam;
 	}
 	/**
-     * Método para construit una cadena con el nombre y el primer rol del objeto.
+     * Método para construir una cadena con el nombre y el primer rol del objeto.
      */
 	//toString
 	@Override
